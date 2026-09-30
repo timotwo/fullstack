@@ -36,4 +36,12 @@ public class UsuarioController {
     public void excluir(@PathVariable Long id) {
         usuarioService.excluir(id);
     }
+    @PostMapping("/login")
+    public Usuario login(@RequestBody Usuario usuario) {
+
+        return usuarioService.login(
+            usuario.getEmail(),
+            usuario.getSenha()
+        );
+    }
 }

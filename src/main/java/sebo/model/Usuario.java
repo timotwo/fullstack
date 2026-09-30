@@ -15,6 +15,7 @@ public class Usuario {
     private String nome;
     private String email;
     private String senha;
+    private String telefone;
     private String cidade;
     private String estado;
 
@@ -48,9 +49,16 @@ public class Usuario {
     public String getSenha() {
         return senha;
     }
+    public String getTelefone() {
+        return telefone;
+    }
+
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
 
     public String getCidade() {

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Criar conta</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="topo">
+
+        <div class="logo">
+            
+            <h1>Sebo</h1>
+        </div>
+
+        <div class="acoes">
+            <button class="btn-secundario" onclick="window.location.href='/'">
+                Voltar
+            </button>
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <section class="formulario-section">
+
+            <div class="formulario">
+
+                <h2>Criar sua conta</h2>
+
+                <p>Cadastre-se para começar a comprar e vender livros.</p>
+
+                <form id="form-cadastro">
+
+                    <label for="nome">Nome</label>
+                    <input
+                        type="text"
+                        id="nome"
+                        placeholder="Seu nome"
+                        required
+                    >
+
+                    <label for="email">E-mail</label>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="seu@email.com"
+                        required
+                    >
+                    <label for="telefone">WhatsApp</label>
+
+                    <input
+                        type="tel"
+                        id="telefone"
+                        placeholder="(00) 00000-0000"
+                        required
+                    >
+
+                    <label for="senha">Senha</label>
+                    <input
+                        type="password"
+                        id="senha"
+                        placeholder="Sua senha"
+                        required
+                    >
+
+                    <label for="cidade">Cidade</label>
+                    <input
+                        type="text"
+                        id="cidade"
+                        placeholder="Sua cidade"
+                    >
+
+                    <label for="estado">Estado</label>
+                    <list id="estado-lista">
+                        <select id="estado" required>
+                            <option value="PA">Pará</option>
+                            
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <option value="AP">Amapá</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="BA">Bahia</option>
+                            <option value="CE">Ceará</option>
+                            <option value="DF">Distrito Federal</option>
+                            <option value="ES">Espírito Santo</option>
+                            <option value="GO">Goiás</option>
+                            <option value="MA">Maranhão</option>
+                            <option value="MT">Mato Grosso</option>
+                            <option value="MS">Mato Grosso do Sul</option>
+                            <option value="MG">Minas Gerais</option>
+                            
+                            <option value="PB">Paraíba</option>
+                            <option value="PR">Paraná</option>
+                            <option value="PE">Pernambuco</option>
+                            <option value="PI">Piauí</option>
+                            <option value="RJ">Rio de Janeiro</option>
+                            <option value="RN">Rio Grande do Norte</option>
+                            <option value="RS">Rio Grande do Sul</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="RR">Roraima</option>
+                            <option value="SC">Santa Catarina</option>
+                            <option value="SP">São Paulo</option>
+                            <option value="SE">Sergipe</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </list>
+
+                    <button type="submit" class="btn-principal">
+                        Criar conta
+                    </button>
+
+                </form>
+
+                <p id="mensagem"></p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <script src="cadastro.js"></script>
+
+</body>
+
+</html>

@@ -31,4 +31,19 @@ public class UsuarioService {
     public void excluir(Long id) {
         usuarioRepository.deleteById(id);
     }
+    public Usuario login(String email, String senha) {
+
+        List<Usuario> usuarios = usuarioRepository.findAll();
+
+        for (Usuario usuario : usuarios) {
+
+            if (usuario.getEmail().equals(email)
+                    && usuario.getSenha().equals(senha)) {
+
+                return usuario;
+            }
+        }
+
+        return null;
+    }
 }
