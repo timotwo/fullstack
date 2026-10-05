@@ -2,6 +2,7 @@ package sebo.service;
 
 import java.util.List;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import sebo.model.Usuario;
@@ -11,6 +12,9 @@ import sebo.repository.UsuarioRepository;
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
+
+    private final BCryptPasswordEncoder passwordEncoder =
+            new BCryptPasswordEncoder();
 
     public UsuarioService(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
@@ -25,12 +29,14 @@ public class UsuarioService {
     }
 
     public Usuario salvar(Usuario usuario) {
+
+        usuario.setSenha(
+            passwordEncoder.encode(usuario.getSenha())
+        );
+
         return usuarioRepository.save(usuario);
     }
 
-    public void excluir(Long id) {
-        usuarioRepository.deleteById(id);
-    }
     public Usuario login(String email, String senha) {
 
         List<Usuario> usuarios = usuarioRepository.findAll();
@@ -38,7 +44,10 @@ public class UsuarioService {
         for (Usuario usuario : usuarios) {
 
             if (usuario.getEmail().equals(email)
-                    && usuario.getSenha().equals(senha)) {
+                    && passwordEncoder.matches(
+                        senha,
+                        usuario.getSenha()
+                    )) {
 
                 return usuario;
             }
@@ -46,4 +55,9 @@ public class UsuarioService {
 
         return null;
     }
+
+    public void excluir(Long id) {
+        usuarioRepository.deleteById(id);
+    }
 }
+

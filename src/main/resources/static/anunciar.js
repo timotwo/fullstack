@@ -1,10 +1,19 @@
-
 const formulario = document.getElementById("form-anuncio");
 const mensagem = document.getElementById("mensagem");
 const selectCategoria = document.getElementById("categoria");
+const campoImagem = document.getElementById("imagem");
+const previa = document.getElementById("previa");
+
+const TAMANHO_MAXIMO = 5 * 1024 * 1024;
+const TIPOS_ACEITOS = ["image/jpeg", "image/png", "image/webp"];
 
 
-// Carrega as categorias do banco
+function mostrarMensagem(texto, erro = false) {
+    mensagem.textContent = texto;
+    mensagem.className = erro ? "erro" : "";
+}
+
+
 async function carregarCategorias() {
 
     try {
@@ -39,7 +48,34 @@ async function carregarCategorias() {
 }
 
 
-// Publica o livro
+campoImagem.addEventListener("change", () => {
+
+    const arquivo = campoImagem.files[0];
+
+    previa.style.display = "none";
+    mensagem.textContent = "";
+
+    if (!arquivo) {
+        return;
+    }
+
+    if (!TIPOS_ACEITOS.includes(arquivo.type)) {
+        mostrarMensagem("Use uma imagem JPG, PNG ou WebP.", true);
+        campoImagem.value = "";
+        return;
+    }
+
+    if (arquivo.size > TAMANHO_MAXIMO) {
+        mostrarMensagem("A imagem deve ter no máximo 5 MB.", true);
+        campoImagem.value = "";
+        return;
+    }
+
+    previa.src = URL.createObjectURL(arquivo);
+    previa.style.display = "block";
+});
+
+
 formulario.addEventListener("submit", async (evento) => {
 
     evento.preventDefault();
@@ -48,8 +84,10 @@ formulario.addEventListener("submit", async (evento) => {
 
     if (!usuarioSalvo) {
 
-        mensagem.textContent =
-            "Você precisa estar logado para anunciar um livro.";
+        mostrarMensagem(
+            "Você precisa estar logado para anunciar um livro.",
+            true
+        );
 
         return;
     }
@@ -69,9 +107,6 @@ formulario.addEventListener("submit", async (evento) => {
         estadoConservacao:
             document.getElementById("estadoConservacao").value,
 
-        imagem:
-            document.getElementById("imagem").value,
-
         usuario: {
             id: usuario.id
         },
@@ -81,18 +116,27 @@ formulario.addEventListener("submit", async (evento) => {
         }
     };
 
+    const dados = new FormData();
+
+    dados.append(
+        "livro",
+        new Blob([JSON.stringify(livro)], { type: "application/json" })
+    );
+
+    const arquivo = campoImagem.files[0];
+
+    if (arquivo) {
+        dados.append("imagem", arquivo);
+    }
 
     try {
 
+        
         const resposta = await fetch("/livros", {
 
             method: "POST",
 
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify(livro)
+            body: dados
         });
 
 
@@ -106,11 +150,11 @@ formulario.addEventListener("submit", async (evento) => {
         console.log("Livro publicado:", livroCriado);
 
 
-        mensagem.textContent =
-            "Livro publicado com sucesso!";
+        mostrarMensagem("Livro publicado com sucesso");
 
 
         formulario.reset();
+        previa.style.display = "none";
 
 
         setTimeout(() => {
@@ -122,12 +166,10 @@ formulario.addEventListener("submit", async (evento) => {
 
         console.error(erro);
 
-        mensagem.textContent =
-            "Erro ao publicar o livro.";
+        mostrarMensagem("Erro ao publicar o livro.", true);
     }
 
 });
 
 
 carregarCategorias();
-

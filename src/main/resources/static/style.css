@@ -1,139 +1,635 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+  box-sizing: border-box;
+  }
 
 body {
-    background-color: #f4f4f9;
-    color: #333;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+margin: 0;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+font-family: 'Space Grotesk', sans-serif;
+background: #232b30;
+color: #f4f9f1;
 }
 
 main {
-    flex: 1;
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 20px;
+width: 100%;
+max-width: 1100px;
+margin: auto;
+padding: 20px;
+flex: 1;
+}
+
+img {
+max-width: 100%;
+display: block;
+}
+
+a {
+color: #b0ffa4;
+text-decoration: none;
+}
+
+a:hover {
+color: #c7fa50;
+}
+
+h1, h2, h3 {
+margin: 0;
+}
+
+p {
+margin: 0;
+}
+
+button {
+padding: 10px 18px;
+border: 1px solid #53616a;
+border-radius: 8px;
+font-family: inherit;
+font-weight: 600;
+cursor: pointer;
+}
+
+.btn-principal {
+background: #c7fa50;
+color: #2f613e;
+
+}
+
+.btn-principal:hover {
+background: #b0ffa4;
+}
+
+.btn-secundario {
+background: transparent;
+color: #c7fa50;
+}
+
+.btn-secundario:hover {
+background: #303a40;
+}
+
+.topo {
+display: flex;
+align-items: center;
+gap: 20px;
+padding: 15px 25px;
+background: #3d4951;
+border-bottom: 1px solid #53616a;
+}
+
+.logo h1 {
+color: #c7fa50;
+font-size: 26px;
+}
+
+.busca {
+display: flex;
+gap: 8px;
+flex: 1;
+max-width: 510px;
+margin: auto;
+}
+
+.busca input {
+flex: 1;
+padding: 10px 14px;
+background: #2b343a;
+color: white;
+border: 1px solid #53616a;
+border-radius: 8px;
+font-family: inherit;
+}
+
+.busca input:focus {
+outline: none;
+border-color: #c7fa50;
+}
+
+.busca button {
+background: #b7eb8a;
+color: #2f613e;
+}
+
+.acoes {
+display: flex;
+gap: 8px;
+}
+
+
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  margin: 18px 0 40px;
+  padding: 72px;
+
+  border: 1px solid rgba(112, 188, 89, 0.8);
+  border-radius: 12px;
+  box-shadow: 0 40px 80px -40px rgb(56, 90, 68);
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(10, 33, 17, 0.92)0%, rgba(24, 32, 36, 0.6) 70%, rgba(24, 32, 36, 0.2) 100%),
+    linear-gradient(0deg, rgba(24, 32, 36, 0.55), transparent 95%);
+}
+
+
+.hero > div {
+  max-width: 560px;
+}
+
+
+
+
+
+
+.hero p {
+  max-width: 46ch;
+  margin-bottom: 28px;
+  color: var(--texto-2);
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.hero .btn-principal,
+.hero button {
+  padding: 14px 28px;
+  font-size: 15px;
+   
+}
+.botoes-hero {
+display: flex; gap: 15px; 
+}
+
+.livros-section {
+margin-top: 20px;
+}
+
+.section-header {
+margin-bottom: 20px;
+}
+
+.section-header h2 {
+color: #c7fa50;
+font-size: 26px;
+}
+
+.section-header p {
+color: #aeb7b2;
+margin-top: 5px;
+}
+
+.lista-livros {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+gap: 20px;
+}
+
+.lista-livros > p {
+text-align: center;
+padding: 30px;
+color: #aeb7b2;
+}
+
+.livro-card {
+overflow: hidden;
+background: #3d4951;
+border: 1px solid #53616a;
+border-radius: 12px;
+cursor: pointer;
+}
+
+.livro-card:hover {
+border-color: #c7fa50;
+}
+
+.livro-imagem {
+aspect-ratio: 3 / 4;
+display: flex;
+align-items: center;
+justify-content: center;
+background: #2b343a;
+}
+
+.livro-imagem img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.livro-imagem span {
+color: #b0ffa4;
+}
+
+.livro-info {
+padding: 14px;
+background: #3d4951;
+border-top: 1px solid #53616a;
+}
+
+.livro-info h3 {
+color: #f4f9f1;
+font-size: 16px;
+margin-bottom: 5px;
+}
+
+.livro-info p {
+color: #aeb7b2;
+font-size: 13px;
+margin-bottom: 4px;
+}
+
+.livro-info .autor {
+color: #b0ffa4;
+}
+
+.livro-info .preco {
+color: #c7fa50;
+font-size: 19px;
+font-weight: bold;
+margin-top: 8px;
+}
+
+.livro-info .conservacao {
+font-size: 12px;
+}
+
+
+.formulario-section {
+display: flex;
+justify-content: center;
+padding: 40px 0;
+}
+
+.formulario {
+width: 100%;
+max-width: 450px;
+padding: 30px;
+background: #3d4951;
+border: 1px solid #53616a;
+border-radius: 12px;
+}
+
+.formulario h2 {
+color: #c7fa50;
+margin-bottom: 8px;
+}
+
+.formulario > p:first-of-type {
+color: #aeb7b2;
+font-size: 14px;
+margin-bottom: 20px;
+}
+
+.formulario form {
+display: flex;
+flex-direction: column;
+}
+
+.formulario label {
+margin: 12px 0 5px;
+color: #b0ffa4;
+font-size: 14px;
+font-weight: 600;
+}
+
+.formulario input,
+.formulario select,
+.formulario textarea {
+width: 100%;
+padding: 11px;
+background: #2b343a;
+color: white;
+border: 1px solid #53616a;
+border-radius: 7px;
+font-family: inherit;
+}
+
+.formulario input:focus,
+.formulario select:focus,
+.formulario textarea:focus {
+outline: none;
+border-color: #c7fa50;
+}
+
+.formulario textarea {
+min-height: 110px;
+resize: vertical;
+}
+
+.formulario input[type="file"] {
+padding: 8px;
+}
+
+.formulario input[type="file"]::file-selector-button {
+padding: 7px 12px;
+margin-right: 10px;
+background: #c7fa50;
+color: #2f613e;
+border: none;
+border-radius: 6px;
+cursor: pointer;
+}
+
+#previa {
+display: none;
+width: 180px;
+aspect-ratio: 3 / 4;
+object-fit: cover;
+margin-top: 10px;
+border-radius: 8px;
+}
+
+#estado-lista {
+display: block;
+}
+
+.formulario form .btn-principal {
+width: 100%;
+margin-top: 20px;
+padding: 13px;
+}
+
+.formulario > p:last-child {
+margin-top: 16px;
+text-align: center;
+color: #aeb7b2;
+font-size: 14px;
+}
+
+
+#mensagem {
+margin-top: 15px;
+text-align: center;
+color: #b0ffa4;
+font-size: 14px;
+}
+
+#mensagem.erro,
+#mensagem.error {
+color: #ff9c8a;
+}
+
+#mensagem:empty {
+display: none;
+}
+
+
+
+
+.detalhes-livro {
+margin-top: 30px;
+}
+
+.detalhes-livro > p {
+text-align: center;
+padding: 40px;
+color: #aeb7b2;
+}
+
+
+
+.livro-detalhe {
+display: grid;
+grid-template-columns: 320px 1fr;
+gap: 30px;
+padding: 25px;
+background: #3d4951;
+border: 1px solid #53616a;
+border-radius: 12px;
+}
+
+.livro-detalhe-imagem {
+aspect-ratio: 3 / 4;
+display: flex;
+align-items: center;
+justify-content: center;
+overflow: hidden;
+background: #2b343a;
+border-radius: 8px;
+color: #b0ffa4;
+}
+
+
+
+
+.livro-detalhe-imagem img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+
+.livro-detalhe-info {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+
+.livro-detalhe-info h2 {
+color: #c7fa50;
+font-size: 34px;
+}
+
+.livro-detalhe-info h3 {
+color: #b0ffa4;
+font-size: 15px;
+}
+
+.livro-detalhe-info p {
+color: #c5ccc7;
+}
+
+.livro-detalhe-info strong {
+color: white;
+}
+
+.livro-detalhe-info .categoria {
+align-self: flex-start;
+padding: 4px 10px;
+background: #b7eb8a;
+color: #2f613e;
+border-radius: 15px;
+font-size: 13px;
+font-weight: bold;
+}
+
+.livro-detalhe-info .autor {
+color: #b0ffa4;
+font-size: 18px;
+}
+
+.livro-detalhe-info .preco {
+align-self: flex-start;
+padding: 6px 12px;
+background: #c7fa50;
+color: #2f613e;
+border-radius: 6px;
+font-size: 24px;
+font-weight: bold;
+}
+
+.livro-detalhe-info .vendedor {
+padding: 15px;
+background: #2b343a;
+border: 1px solid #53616a;
+border-radius: 8px;
+}
+
+.btn-interesse {
+align-self: flex-start;
+margin-top: 8px;
+}
+
+
+.meusanuncios .livro-card {
+cursor: default;
+}
+
+.meusanuncios .livro-imagem {
+position: relative;
+cursor: pointer;
+}
+
+
+
+
+.livro-imagem .selo-vendido {
+position: absolute;
+top: 10px;
+left: 10px;
+padding: 4px 9px;
+background: #c7fa50;
+color: #2f613e;
+border-radius: 6px;
+font-size: 12px;
+font-weight: bold;
+}
+
+.livro-card.vendido .livro-imagem img {
+opacity: 0.45;
+filter: grayscale(0.6);
+}
+
+.livro-acoes {
+display: flex;
+gap: 8px;
+margin-top: 10px;
+}
+
+.livro-acoes button {
+flex: 1;
+padding: 8px;
+font-size: 13px;
+}
+
+.btn-perigo {
+background: transparent;
+color: #ff9c8a;
+border-color: #ff9c8a;
+}
+
+.btn-perigo:hover {
+background: #ff9c8a;
+color: #232b30;
+}
+
+
+
+
+
+footer {
+padding: 20px;
+text-align: center;
+background: #3d4951;
+border-top: 1px solid #53616a;
+color: #aeb7b2;
+font-size: 14px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width: 860px) {
+.topo {
+flex-wrap: wrap;
+}
+
+.busca {
+    order: 3;
+    flex-basis: 100%;
+    max-width: none;
+}
+
+.livro-detalhe {
+    grid-template-columns: 1fr;
+}
+
+
+
+
+@media (max-width: 560px) {
+main {
+padding: 16px;
 }
 
 
 .topo {
-    background-color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 30px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 12px 16px;
 }
-
-.logo h1 {
-    font-size: 1.5rem;
-    color: #2c3e50;
-}
-
-
-.busca {
-    display: flex;
-    gap: 8px;
-    flex: 1;
-    max-width: 400px;
-    margin: 0 20px;
-}
-
-.busca input {
-    width: 100%;
-    padding: 8px 12px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    outline: none;
-}
-
-.busca button {
-    padding: 8px 16px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.busca button:hover {
-    background-color: #2980b9;
-}
-
-
-.acoes {
-    display: flex;
-    gap: 10px;
-}
-
-.btn-principal, .btn-secundario {
-    padding: 8px 16px;
-    border-radius: 4px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.btn-principal {
-    background-color: #2ecc71;
-    color: white;
-    border: none;
-}
-
-.btn-principal:hover {
-    background-color: #27ae60;
-}
-
-.btn-secundario {
-    background-color: transparent;
-    color: #333;
-    border: 1px solid #ccc;
-}
-
-.btn-secundario:hover {
-    background-color: #e2e2e2;
-}
-
 
 .hero {
-    background-color: #eef2f5;
-    padding: 40px 20px;
-    text-align: center;
-    border-radius: 8px;
-    margin-bottom: 30px;
+    padding: 35px 22px;
 }
 
-
-.livros-section {
-    margin-top: 20px;
+.hero h2 {
+    font-size: 32px;
 }
 
-.section-header h2 {
-    font-size: 1.4rem;
-    margin-bottom: 15px;
-    color: #2c3e50;
+.formulario {
+    padding: 25px 20px;
 }
-
 
 .lista-livros {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
 }
 
-
-footer {
-    background-color: #2c3e50;
-    color: white;
-    text-align: center;
-    padding: 15px;
-    margin-top: 40px;
+.acoes button {
+    padding: 9px 12px;
 }
+
+}}

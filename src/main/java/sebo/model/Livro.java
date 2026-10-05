@@ -21,6 +21,9 @@ public class Livro {
 
     private String imagem;
 
+    @Column(name = "vendido")
+    private Boolean vendido = false;
+
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
@@ -86,6 +89,14 @@ public class Livro {
 
     public void setImagem(String imagem) {
         this.imagem = imagem;
+    }
+
+    public Boolean getVendido() {
+        return vendido;
+    }
+
+    public void setVendido(Boolean vendido) {
+        this.vendido = vendido;
     }
 
     public Usuario getUsuario() {

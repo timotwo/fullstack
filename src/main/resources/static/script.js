@@ -93,6 +93,10 @@ function mostrarLivros(livros) {
                     ${livro.estadoConservacao ||
                     "Não informado"}
                 </p>
+                <p>
+                    ${livro.usuario.cidade || "Cidade não informada"} -
+                    ${livro.usuario.estado || ""}
+                </p>
 
             </div>
 
@@ -140,6 +144,16 @@ function buscarLivros() {
 
     mostrarLivros(resultados);
 }
+function irParaAnunciar() {
+
+    const usuario = localStorage.getItem("usuario");
+
+    if (usuario) {
+        window.location.href = "anunciar.html";
+    } else {
+        window.location.href = "login.html";
+    }
+}
 
 
 
@@ -169,6 +183,11 @@ const usuarioLogado = localStorage.getItem("usuario");
 if (usuarioLogado) {
 
     const usuario = JSON.parse(usuarioLogado);
+    const botaoMeusAnuncios = document.getElementById("botao-meusanuncios");
+    botaoMeusAnuncios.hidden = false;
+    botaoMeusAnuncios.onclick = () => {
+        window.location.href = "meusanuncios.html";
+    };
 
     botaoLogin.textContent = `Olá, ${usuario.nome}`;
 
@@ -190,3 +209,5 @@ if (usuarioLogado) {
 
 }
 carregarLivros();
+
+

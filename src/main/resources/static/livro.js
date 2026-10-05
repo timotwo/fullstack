@@ -59,6 +59,18 @@ async function carregarLivro() {
                         </p>
 
                     </div>
+                    <div class="vendedor">
+                        <h3>Vendedor</h3>
+
+                        <p>
+                            <strong>${livro.usuario.nome}</strong>
+                        </p>
+
+                        <p>
+                            ${livro.usuario.cidade || "Cidade não informada"} -
+                            ${livro.usuario.estado || ""}
+                        </p>
+                    </div>
 
                     <button
                         class="btn-principal btn-interesse"

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Sebossssssssssss</title>
+    <title>SEBOTWO</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
@@ -15,8 +15,8 @@
     <header class="topo">
 
         <div class="logo">
-            
-            <h1>Sebossssssssssssssssssssso</h1>
+
+            <h1>SEBOTWO</h1>
         </div>
 
         <div class="busca">
@@ -38,8 +38,11 @@
             >
                 Entrar
             </button>
-            <button class="btn-principal" onclick="window.location.href='anunciar.html'">
-                Anunciar livro
+            <button class="btn-principal" onclick="irParaAnunciar()">
+                    Anunciar livro
+            </button>
+            <button class="btn-secundario" id="botao-meusanuncios" hidden>
+                Meus anúncios
             </button>
         </div>
 
@@ -51,21 +54,44 @@
         <section class="hero">
 
             <div>
-                
 
-        
-                <button class="btn-principal">Explorar livros</button>
+                
+                <video
+                    class="hero-video"
+                    autoplay
+                    muted
+                    loop
+                    playsinline
+                    preload="auto"
+                    aria-hidden="true"
+                >
+                    
+                    <source src="img/uou.mp4" type="video/mp4">
+                    
+                </video>
+
+                
+                <p>Compre e venda livros de segunda mão de gente como você</p>
+
+                <button class="btn-principal" onclick="document.getElementById('livros').scrollIntoView({ behavior: 'smooth' })">
+                    Explorar livros
+                </button>
+                <button class="btn-principal" onclick="irParaAnunciar()">
+                    Anunciar livro
+                </button>
             </div>
 
         </section>
 
 
-        <section class="livros-section">
+
+
+        <section class="livros-section" id="livros">
 
             <div class="section-header">
                 <div>
                     <h2>Livros disponíveis</h2>
-                    
+
                 </div>
             </div>
 
@@ -82,7 +108,7 @@
 
     <footer>
 
-        <p>2026 Sebo</p>
+        <p> SEBOTWO</p>
 
     </footer>
 
