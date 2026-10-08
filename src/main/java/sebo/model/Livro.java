@@ -3,6 +3,7 @@ package sebo.model;
 
 import jakarta.persistence.*;
 
+
 @Entity
 @Table(name = "livro")
 public class Livro {
@@ -70,6 +71,7 @@ public class Livro {
     public Double getPreco() {
         return preco;
     }
+    
 
     public void setPreco(Double preco) {
         this.preco = preco;
@@ -86,6 +88,7 @@ public class Livro {
     public String getImagem() {
         return imagem;
     }
+
 
     public void setImagem(String imagem) {
         this.imagem = imagem;
@@ -110,6 +113,8 @@ public class Livro {
     public Categoria getCategoria() {
         return categoria;
     }
+
+
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;

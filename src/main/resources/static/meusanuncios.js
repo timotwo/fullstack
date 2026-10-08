@@ -111,7 +111,7 @@ async function alternarVendido(livro) {
     } catch (erro) {
 
         console.error(erro);
-        alert("Não foi possível atualizar o anúncio.");
+        alert("Não foi possível atualizar o anuncio.");
     }
 }
 
@@ -119,7 +119,7 @@ async function alternarVendido(livro) {
 async function excluir(livro) {
 
     const confirmou = confirm(
-        `Excluir o anúncio "${livro.titulo}"? Essa ação não pode ser desfeita.`
+        `Excluir o anúncio "${livro.titulo}"essa ação não poderá ser desfeita, deseja continuar?`
     );
 
     if (!confirmou) {
@@ -134,7 +134,7 @@ async function excluir(livro) {
         );
 
         if (!resposta.ok) {
-            throw new Error("Erro ao excluir anúncio");
+            throw new Error("Erro ao excluir anuncio");
         }
 
         carregarAnuncios();
@@ -142,7 +142,7 @@ async function excluir(livro) {
     } catch (erro) {
 
         console.error(erro);
-        alert("Não foi possível excluir o anúncio.");
+        alert("Não foi possível excluir o anuncio.");
     }
 }
 
@@ -164,7 +164,7 @@ async function carregarAnuncios() {
         if (livros.length === 0) {
 
             lista.appendChild(
-                criar("p", "", "Você ainda não anunciou nenhum livro.")
+                criar("p", "", "Você ainda não anunciou nenhum livro")
             );
 
             return;
@@ -180,7 +180,7 @@ async function carregarAnuncios() {
         console.error(erro);
 
         lista.replaceChildren(
-            criar("p", "", "Não foi possível carregar seus anúncios.")
+            criar("p", "", "Não foi possível carregar anuncios")
         );
     }
 }

@@ -27,7 +27,7 @@ async function carregarLivro() {
                     ${
                         livro.imagem
                             ? `<img src="${livro.imagem}" alt="${livro.titulo}">`
-                            : `<span>aaaaaaa</span>`
+                            : `<span>upar imagem</span>`
                     }
                 </div>
 
@@ -110,7 +110,7 @@ async function carregarLivro() {
         console.error(erro);
 
         detalhes.innerHTML = `
-            <p>Não foi possível carregar este livro.</p>
+            <p>Não foi possível carregar esse livro.</p>
         `;
     }
 }
