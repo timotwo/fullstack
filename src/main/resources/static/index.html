@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>SEBOTWO</title>
-
+    
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -32,6 +32,8 @@
         </div>
 
         <div class="acoes">
+
+            <button id="btn-tema" class="btn-secundario" type="button" title="Alternar tema">☀️</button>
             <button
                 class="btn-secundario"
                 id="botao-login"
@@ -91,9 +93,11 @@
             <div class="section-header">
                 <div>
                     <h2>Livros disponíveis</h2>
-
+                    <p id="contador-livros"></p>
                 </div>
             </div>
+
+            <div id="filtro-categorias" class="filtros" aria-label="Filtrar por categoria"></div>
 
             <div id="lista-livros" class="lista-livros">
 

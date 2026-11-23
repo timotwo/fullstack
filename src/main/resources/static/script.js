@@ -1,8 +1,11 @@
 let todosOsLivros = [];
+let categoriaAtiva = "todas";
 
 const lista = document.getElementById("lista-livros");
 const campoBusca = document.getElementById("campo-busca");
 const botaoBusca = document.getElementById("botao-busca");
+const filtroCategorias = document.getElementById("filtro-categorias");
+const contador = document.getElementById("contador-livros");
 
 
 
@@ -18,7 +21,9 @@ async function carregarLivros() {
 
         todosOsLivros = await resposta.json();
 
-        mostrarLivros(todosOsLivros);
+        montarFiltroCategorias();
+
+        aplicarFiltros();
 
     } catch (erro) {
 
@@ -69,7 +74,7 @@ function mostrarLivros(livros) {
                 ${
                     livro.imagem
                         ? `<img src="${livro.imagem}" alt="${livro.titulo}">`
-                        : `<span>aaaaaaaa</span>`
+                        : `<span>Sem imagem</span>`
                 }
 
             </div>
@@ -94,14 +99,26 @@ function mostrarLivros(livros) {
                     "Não informado"}
                 </p>
                 <p>
-                    ${livro.usuario.cidade || "Cidade não informada"} -
-                    ${livro.usuario.estado || ""}
+                    ${livro.usuario?.cidade || "Cidade não informada"} -
+                    ${livro.usuario?.estado || ""}
                 </p>
 
             </div>
 
         `;
 
+
+        const img = card.querySelector(".livro-imagem img");
+
+        if (img) {
+            img.addEventListener("error", () => {
+                img.replaceWith(
+                    Object.assign(document.createElement("span"), {
+                        textContent: "Sem imagem"
+                    })
+                );
+            });
+        }
 
         lista.appendChild(card);
 
@@ -110,40 +127,82 @@ function mostrarLivros(livros) {
 
 
 
-function buscarLivros() {
-
-    const termo =
-        campoBusca.value
-            .trim()
-            .toLowerCase();
+function nomeCategoria(livro) {
+    return livro.categoria?.nome || "Outros";
+}
 
 
-    if (termo === "") {
+function montarFiltroCategorias() {
 
-        mostrarLivros(todosOsLivros);
+    const contagem = {};
 
-        return;
-    }
+    todosOsLivros.forEach(livro => {
+        const nome = nomeCategoria(livro);
+        contagem[nome] = (contagem[nome] || 0) + 1;
+    });
 
+    const nomes = Object.keys(contagem).sort((a, b) => a.localeCompare(b, "pt-BR"));
 
-    const resultados =
-        todosOsLivros.filter(livro => {
+    filtroCategorias.innerHTML = "";
 
-            const titulo =
-                livro.titulo.toLowerCase();
+    const criarChip = (valor, texto, quantidade) => {
 
-            const autor =
-                livro.autor.toLowerCase();
+        const chip = document.createElement("button");
 
+        chip.type = "button";
+        chip.className = "chip";
+        chip.dataset.categoria = valor;
+        chip.textContent = `${texto} (${quantidade})`;
 
-            return titulo.includes(termo)
-                || autor.includes(termo);
-
+        chip.addEventListener("click", () => {
+            categoriaAtiva = valor;
+            aplicarFiltros();
         });
 
+        filtroCategorias.appendChild(chip);
+    };
+
+    criarChip("todas", "Todos", todosOsLivros.length);
+
+    nomes.forEach(nome => criarChip(nome, nome, contagem[nome]));
+}
+
+
+function aplicarFiltros() {
+
+    const termo = campoBusca.value.trim().toLowerCase();
+
+    const resultados = todosOsLivros.filter(livro => {
+
+        if (categoriaAtiva !== "todas" && nomeCategoria(livro) !== categoriaAtiva) {
+            return false;
+        }
+
+        if (termo === "") {
+            return true;
+        }
+
+        return livro.titulo.toLowerCase().includes(termo)
+            || livro.autor.toLowerCase().includes(termo);
+    });
+
+    filtroCategorias.querySelectorAll(".chip").forEach(chip => {
+        chip.classList.toggle("ativo", chip.dataset.categoria === categoriaAtiva);
+    });
+
+    contador.textContent =
+        resultados.length === 1
+            ? "1 livro encontrado"
+            : `${resultados.length} livros encontrados`;
 
     mostrarLivros(resultados);
 }
+
+
+function buscarLivros() {
+    aplicarFiltros();
+}
+
 function irParaAnunciar() {
 
     const usuario = localStorage.getItem("usuario");
@@ -175,6 +234,44 @@ campoBusca.addEventListener(
 
     }
 );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btnTema = document.getElementById("btn-tema");
+
+  if (localStorage.getItem("tema") === "claro") {
+    document.body.classList.add("modo-claro");
+    if (btnTema) btnTema.textContent = "🌙";
+  }
+
+  if (btnTema) {
+    btnTema.addEventListener("click", () => {
+      document.body.classList.toggle("modo-claro");
+      const claro = document.body.classList.contains("modo-claro");
+      localStorage.setItem("tema", claro ? "claro" : "escuro");
+      btnTema.textContent = claro ? "🌙" : "☀️";
+    });
+  }
+});
 
 const botaoLogin = document.getElementById("botao-login");
 
