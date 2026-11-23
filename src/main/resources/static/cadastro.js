@@ -2,7 +2,6 @@ const formulario = document.getElementById("form-cadastro");
 const mensagem = document.getElementById("mensagem");
 
 formulario.addEventListener("submit", async (evento) => {
-
     evento.preventDefault();
 
     const usuario = {
@@ -15,7 +14,6 @@ formulario.addEventListener("submit", async (evento) => {
     };
 
     try {
-
         const resposta = await fetch("/usuarios", {
             method: "POST",
             headers: {
@@ -30,17 +28,19 @@ formulario.addEventListener("submit", async (evento) => {
 
         const usuarioCriado = await resposta.json();
 
-        console.log("Usuário criado:", usuarioCriado);
+        
+        localStorage.setItem("usuario", JSON.stringify(usuarioCriado));
 
-        mensagem.textContent = "Conta criada com sucesso";
+        mensagem.classList.remove("erro");
+        mensagem.textContent = "Conta criada com sucesso! Entrando...";
 
-        formulario.reset();
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 800);
 
     } catch (erro) {
-
         console.error(erro);
-
+        mensagem.classList.add("erro");
         mensagem.textContent = "Erro ao criar a conta";
     }
 });
-
